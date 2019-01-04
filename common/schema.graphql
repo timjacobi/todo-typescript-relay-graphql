@@ -1,0 +1,10 @@
+type Query {
+  todo(id: ID!): Todo
+  todos: [Todo]!
+}
+
+type Todo {
+  id: ID
+  done: Boolean
+  text: String
+}

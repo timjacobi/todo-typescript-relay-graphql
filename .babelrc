@@ -1,0 +1,15 @@
+{
+  "plugins": [["relay", { "artifactDirectory": "./gen/relay_artifacts" }]],
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "targets": {
+          "browsers": ["last 2 versions"]
+        }
+      }
+    ],
+    "@babel/react",
+    "@babel/typescript"
+  ]
+}
