@@ -1,8 +1,13 @@
 import React, { ReactElement } from "react";
-import { graphql, QueryRenderer } from "react-relay";
+import { commitLocalUpdate, graphql, QueryRenderer } from "react-relay";
 import environment from "./relay/environment";
 
 import { Todo } from "../common/types";
+
+const toggleDone = (id: string, done: boolean) =>
+  commitLocalUpdate(environment, store =>
+    store.get(id).setValue(!done, "done")
+  );
 
 export default function Root(): ReactElement<any> {
   return (
@@ -25,11 +30,17 @@ export default function Root(): ReactElement<any> {
         return (
           <>
             <h2>What needs to be done?</h2>
+            <h4>Click item to toggle state</h4>
             <ul>
-              {props.todos.map(({ done, text }: Todo, i: number) => (
-                <li key={i}>{done ? <del>{text}</del> : text}</li>
+              {props.todos.map(({ done, id, text }: Todo, i: number) => (
+                <li key={i} onClick={() => toggleDone(id, done)}>
+                  {done ? <del>{text}</del> : text}
+                </li>
               ))}
             </ul>
+            {props.todos.every((todo: Todo) => todo.done) ? (
+              <h5>You're all done!</h5>
+            ) : null}
           </>
         );
       }}
