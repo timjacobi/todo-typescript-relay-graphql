@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "es2015",
     "esModuleInterop": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "moduleResolution": "node",
     "skipLibCheck": true,
     "sourceMap": true,
