@@ -1,13 +1,10 @@
 import React, { ReactElement } from "react";
-import { commitLocalUpdate, graphql, QueryRenderer } from "react-relay";
+import { graphql, QueryRenderer } from "react-relay";
 import environment from "./relay/environment";
+import dispatch from "./dispatch";
+import { decreaseCounter, increaseCounter, toggleDone } from "./actions";
 
 import { Todo } from "../common/types";
-
-const toggleDone = (id: string, done: boolean) =>
-  commitLocalUpdate(environment, store =>
-    store.get(id).setValue(!done, "done")
-  );
 
 export default function Root(): ReactElement<any> {
   return (
@@ -15,6 +12,7 @@ export default function Root(): ReactElement<any> {
       environment={environment}
       query={graphql`
         query RootQuery {
+          counter
           todos {
             id
             done
@@ -33,7 +31,7 @@ export default function Root(): ReactElement<any> {
             <h4>Click item to toggle state</h4>
             <ul>
               {props.todos.map(({ done, id, text }: Todo, i: number) => (
-                <li key={i} onClick={() => toggleDone(id, done)}>
+                <li key={i} onClick={() => dispatch(toggleDone(id, done))}>
                   {done ? <del>{text}</del> : text}
                 </li>
               ))}
@@ -41,6 +39,12 @@ export default function Root(): ReactElement<any> {
             {props.todos.every((todo: Todo) => todo.done) ? (
               <h5>You're all done!</h5>
             ) : null}
+            <h2>Count Something!</h2>
+            <h2>
+              <button onClick={() => dispatch(decreaseCounter())}>-</button>{" "}
+              {props.counter}{" "}
+              <button onClick={() => dispatch(increaseCounter())}>+</button>
+            </h2>
           </>
         );
       }}

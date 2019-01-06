@@ -3,6 +3,7 @@
 import { ConcreteRequest } from "relay-runtime";
 export type RootQueryVariables = {};
 export type RootQueryResponse = {
+    readonly counter: number | null;
     readonly todos: ReadonlyArray<({
         readonly id: string | null;
         readonly done: boolean | null;
@@ -18,6 +19,7 @@ export type RootQuery = {
 
 /*
 query RootQuery {
+  counter
   todos {
     id
     done
@@ -28,6 +30,13 @@ query RootQuery {
 
 const node: ConcreteRequest = (function(){
 var v0 = [
+  {
+    "kind": "ScalarField",
+    "alias": null,
+    "name": "counter",
+    "args": null,
+    "storageKey": null
+  },
   {
     "kind": "LinkedField",
     "alias": null,
@@ -66,7 +75,7 @@ return {
   "operationKind": "query",
   "name": "RootQuery",
   "id": null,
-  "text": "query RootQuery {\n  todos {\n    id\n    done\n    text\n  }\n}\n",
+  "text": "query RootQuery {\n  counter\n  todos {\n    id\n    done\n    text\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -84,5 +93,5 @@ return {
   }
 };
 })();
-(node as any).hash = '1dfc06c746796a8cd61b9d187d4a35c3';
+(node as any).hash = '77d3fc212b11f6fae2a690de5b747042';
 export default node;

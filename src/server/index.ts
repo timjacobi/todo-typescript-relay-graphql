@@ -16,6 +16,7 @@ const getTodoById = ({ id }: { id: number }) =>
   TODOS.find(todo => todo.id === id);
 
 const rootValue = {
+  counter: 0,
   todos: getTodos,
   todo: getTodoById
 };

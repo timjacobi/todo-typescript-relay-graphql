@@ -1,4 +1,5 @@
 type Query {
+  counter: Int
   todo(id: ID!): Todo
   todos: [Todo]!
 }
