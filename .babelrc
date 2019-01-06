@@ -1,5 +1,7 @@
 {
-  "plugins": [["relay", { "artifactDirectory": "./gen/relay_artifacts" }]],
+  "plugins": [
+    ["relay", { "artifactDirectory": "./src/__generated__/relay_artifacts" }]
+  ],
   "presets": [
     [
       "@babel/env",

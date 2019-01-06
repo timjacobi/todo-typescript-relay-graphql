@@ -4,7 +4,7 @@ import { readFileSync } from "fs";
 import { buildSchema } from "graphql";
 import path from "path";
 
-const schema = buildSchema(readFileSync("./common/schema.graphql").toString());
+const schema = buildSchema(readFileSync("./schema.graphql").toString());
 
 const TODOS = [
   { id: 0, done: false, text: "Buy Milk" },
@@ -16,7 +16,6 @@ const getTodoById = ({ id }: { id: number }) =>
   TODOS.find(todo => todo.id === id);
 
 const rootValue = {
-  counter: 0,
   todos: getTodos,
   todo: getTodoById
 };

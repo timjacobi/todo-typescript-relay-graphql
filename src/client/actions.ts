@@ -5,7 +5,11 @@ export const toggleDone = (id: string, done: boolean) => (
 ) => store.get(id).setValue(!done, "done");
 
 export const increaseCounter = () => (store: RecordSourceProxy) =>
-  store.getRoot().setValue(store.getRoot().getValue("counter") + 1, "counter");
+  store
+    .getRoot()
+    .setValue((store.getRoot().getValue("counter") || 0) + 1, "counter");
 
 export const decreaseCounter = () => (store: RecordSourceProxy) =>
-  store.getRoot().setValue(store.getRoot().getValue("counter") - 1, "counter");
+  store
+    .getRoot()
+    .setValue((store.getRoot().getValue("counter") || 0) - 1, "counter");

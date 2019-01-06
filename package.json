@@ -2,7 +2,7 @@
   "name": "todo-typescript-relay-graphql",
   "version": "1.0.0",
   "scripts": {
-    "relay:build": "relay-compiler --src ./src/client --schema ./common/schema.graphql --language typescript --artifactDirectory ./gen/relay_artifacts",
+    "relay:build": "relay-compiler --src ./src/client --schema ./schema.graphql --language typescript --artifactDirectory ./src/__generated__/relay_artifacts",
     "relay:watch": "yarn relay:build --watch",
     "server:watch": "nodemon --exec babel-node --extensions '.ts' src/server/index.ts",
     "server:build": "babel src/server/index.ts --out-dir dist  --extensions '.ts'",
